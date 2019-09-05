@@ -24,8 +24,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-
-        $fund = FundInformation::find(1);
-        return view('home',compact('fund'));
+        echo "555";
+        //$fund = FundInformation::find(1);
+        //return view('home',compact('fund'));
     }
 }
