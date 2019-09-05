@@ -1,0 +1,62 @@
+html{
+    font-family: 'Kanit', sans-serif;
+}
+body{
+    background-color: #45baaa;
+}
+.pagination{
+    color: red !important;
+}
+.sub span{
+    color: #33887d;
+    font-size: 1.2em;
+}
+.container{
+    margin-top: 4%;
+    margin-bottom: 4%;
+    border-radius: 1.0em;
+    background-color: white;
+    width: 50vmax;
+    box-shadow: 2px 2px 50px 1px #666666;
+    padding: 2%;
+
+}
+
+.showContact .modal{
+    margin-top: -3%;
+    width: 45vmax !important ;
+    max-height: 100%; overflow: unset
+}
+.showContact label{
+    font-size: 1.0em;
+    color: gray;
+}
+
+.listMain{
+    text-align: center;
+    color:#fff;
+    width: 15em;
+    height: 15em;
+    margin-top: 3%;
+    border-radius: 1.5em;
+    background-color: #45baaa;
+    padding-top: 12%;
+    padding-bottom: 3%;
+}
+.mainBody li{
+    display: inline;
+}
+.mapfund{
+    width: 40vmax;
+    height: 20vmax;
+}
+.modal-content h6{
+    font-size: 1.0em;
+    border-style: solid 0px red;
+}
+.container ul, li{
+    display: inline;
+}
+.showContact ul, li{
+    display: inherit;
+}
