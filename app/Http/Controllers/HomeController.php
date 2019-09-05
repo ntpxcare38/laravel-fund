@@ -26,7 +26,6 @@ class HomeController extends Controller
     {
 
         $fund = FundInformation::find(1);
-        dd($fund);
-        //return view('home',compact('fund'));
+        return view('home',compact('fund'));
     }
 }
