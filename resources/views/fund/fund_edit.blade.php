@@ -125,7 +125,7 @@
                                 <label>ชื่อผู้ประสานงาน</label>
                             </div>
                         </div>
-                        <input name="fund_edit_by" type="hidden" class="validate" value="{{Auth::user()->p_id}}">
+                        <input name="p_id" type="hidden" class="validate" value="{{Auth::user()->p_id}}">
                         <input name="fund_edit_time" type="hidden" class="validate" value="{{$now}}">
 
 

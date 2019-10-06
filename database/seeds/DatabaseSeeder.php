@@ -38,7 +38,7 @@ class DatabaseSeeder extends Seeder
             'fund_name_h' => 'นายอินถา หลวงใจ',
             'fund_name_c' => 'นางอารีย์พันธ์ จีรัง',
             'fund_habitant' => 10897,
-            'fund_edit_by' => 29,
+            'p_id' => 29,
             'fund_edit_time' => '2562-01-01 00:00:00'
         ]);
 

@@ -33,7 +33,7 @@ class CreateFundInformation extends Migration
             $table->string('fund_name_h');
             $table->string('fund_name_c');
             $table->integer('fund_habitant');
-            $table->integer('fund_edit_by');
+            $table->integer('p_id');
             $table->dateTime('fund_edit_time');
         });
     }

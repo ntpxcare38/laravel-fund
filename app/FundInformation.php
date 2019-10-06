@@ -28,7 +28,7 @@ class FundInformation extends Model
         'fund_name_h',
         'fund_name_c',
         'fund_habitant',
-        'fund_edit_by',
+        'p_id',
         'fund_edit_time',
 
     ];

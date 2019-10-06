@@ -63,7 +63,7 @@ class FundInformationController extends Controller
     public function edit($id)
     {
         $fund = FundInformation::select('fund_information.*','personnels.p_id','personnels.p_fname', 'personnels.p_lname')
-                                ->join('personnels', 'fund_information.fund_edit_by', '=', 'personnels.p_id')
+                                ->join('personnels', 'fund_information.p_id', '=', 'personnels.p_id')
                                 ->where('fund_id','=',$id)
                                 ->first();
         return view('fund.fund_edit',compact('fund'));
@@ -120,7 +120,7 @@ class FundInformationController extends Controller
         $fund->fund_name_h = $request->fund_name_h;
         $fund->fund_name_c = $request->fund_name_c;
         $fund->fund_habitant = $request->fund_habitant;
-        $fund->fund_edit_by = $request->fund_edit_by;
+        $fund->p_id = $request->p_id;
         $fund->fund_edit_time = $request->fund_edit_time;
         $fund->save();
         return redirect('/fund')->with('status', 'update');
