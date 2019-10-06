@@ -247,6 +247,7 @@
                 <th><div class='col1'>รวมยอดบัญชีรายจ่าย</div></th><th><div class='col2'>{{number_format($totalExpend,2)}}</div></th>
             </tr>
 </table>
+<br>
 <center><b>รายงานบัญชีรายรับ-รายจ่าย{{$fund->fund_name}} อำเภอ{{$fund->fund_district}} จังหวัด{{$fund->fund_province}}</b></center>
         <br>
         <table>

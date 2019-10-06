@@ -25,6 +25,9 @@
 ?>
 <div class="container tbfund">
             <div class="row">
+                <div class="title col s12 m6 left">
+                        <h5><i class="tiny material-icons">people</i> จัดการข้อมูลสมาชิก</h5>
+                </div>
                 <div class="col s12 m6 right">
                     <div class="input-field col s12 m6 right-align">
                         <a href="/pdfmemall" target="_blank" class="waves-effect waves-light btn"><i class="material-icons left">picture_as_pdf</i>พิมพ์รายชื่อทั้งหมด</a>

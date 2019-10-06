@@ -6,7 +6,10 @@
     <div class="row">
     </div>
     <div class="row">
-        <div class="col s12 m12 right-align">
+        <div class="title col s12 m6 left">
+            <h5><i class="tiny material-icons">assignment_ind</i> จัดการข้อมูลประเภทสวัสดิการ</h5>
+        </div>
+        <div class="col s12 m6 right-align">
             <a href="#createbentype" class="waves-effect waves-light btn  modal-trigger"><i class="material-icons left">assignment_ind</i>เพิ่มสวัสดิการ</a>
         </div>
     </div>

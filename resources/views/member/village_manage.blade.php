@@ -6,7 +6,10 @@
     <div class="row">
     </div>
     <div class="row">
-        <div class="col s12 m12 right-align">
+        <div class="title col s12 m6 left">
+            <h5><i class="tiny material-icons">home</i> จัดการข้อมูลหมู่บ้าน</h5>
+        </div>
+        <div class="col s12 m6 right-align">
             <a href="#creattypemem" class="waves-effect waves-light btn  modal-trigger"><i class="material-icons left">home</i>เพิ่มหมู่บ้าน</a>
         </div>
     </div>

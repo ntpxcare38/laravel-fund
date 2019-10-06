@@ -35,9 +35,11 @@
 
 <div class="container tbshow">
         <div class="row">
-                <div class="col s12 m12">
+                <div class="title col s12 m6 left">
+                    <h5><i class="tiny material-icons">assignment_ind</i> ประวัติการเบิกสวัสดิการ</h5>
+                </div>
+                <div class="col s12 m6">
                     <a href="/pdfBenMem/{{$mem->mem_id}}" target="_blank" class="waves-effect waves-light btn right"><i class="material-icons left">picture_as_pdf</i>พิมพ์</a>
-                    <h5 class="left">ประวัติการเบิกสวัสดิการ</h5>
                 </div>
         </div>
         <table class="highlight responsive-table">

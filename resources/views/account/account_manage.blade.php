@@ -20,6 +20,9 @@ function DateThaiShort($now)
 
 <div class="container tbfund">
         <div class="row">
+            <div class="title col s12 m12 left">
+                    <h5><i class="tiny material-icons">account_balance_wallet</i> จัดการข้อมูลรายรับ-รายจ่าย</h5>
+            </div>
         </div>
         <div class="row">
             <div class="col s12 m11 right">

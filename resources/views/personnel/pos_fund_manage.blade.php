@@ -6,7 +6,10 @@
     <div class="row">
     </div>
     <div class="row">
-        <div class="col s12 m12 right-align">
+        <div class="title col s12 m6 left">
+            <h5><i class="tiny material-icons">person_outline</i> จัดการข้อมูลตำแหน่งในกองทุน</h5>
+        </div>
+        <div class="col s12 m6 right-align">
             <a href="#creaeposfund" class="waves-effect waves-light btn  modal-trigger"><i class="material-icons left">group_add</i>ตำแหน่งในกองทุน</a>
         </div>
     </div>

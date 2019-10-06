@@ -22,7 +22,10 @@
 
 <div class="container tbfund">
         <div class="row">
-            <div class="input-field col s12 m12 right-align">
+                <div class="title col s6 m6 left">
+                        <h5><i class="tiny material-icons">assignment_ind</i> จัดการข้อมูลสวัสดิการ</h5>
+                </div>
+            <div class="input-field col s6 m6 right-align">
                 <a href="/reBenMonth" target="_blank" class="waves-effect waves-light btn"><i class="material-icons left">picture_as_pdf</i>พิมพ์ข้อมูลการจ่ายสวัสดิการ</a>
             </div>
         </div>

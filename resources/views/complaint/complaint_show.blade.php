@@ -26,6 +26,9 @@
 ?>
 <div class="container tbfund">
         <div class="row">
+            <div class="title col s12 m12 left">
+                <h5><i class="tiny material-icons">chat</i> ข้อมูลการร้องเรียน</h5>
+            </div>
         </div>
         <div class="row">
             <div class="col s10 m10 right">

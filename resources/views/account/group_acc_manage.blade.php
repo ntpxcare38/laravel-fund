@@ -8,7 +8,10 @@
     <div class="row">
     </div>
     <div class="row">
-        <div class="col s12 m12 right-align">
+        <div class="title col s12 m6 left">
+            <h5><i class="tiny material-icons">account_balance_wallet</i> จัดการข้อมูลหมวดรายรับ-รายจ่าย</h5>
+        </div>
+        <div class="col s12 m6 right-align">
             <a href="#creatgroup" class="waves-effect waves-light btn  modal-trigger"><i class="material-icons left">playlist_add</i>หมวด</a>
         </div>
     </div>

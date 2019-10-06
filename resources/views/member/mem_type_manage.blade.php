@@ -7,7 +7,10 @@
     <div class="row">
     </div>
     <div class="row">
-        <div class="col s12 m12 right-align">
+        <div class="title col s12 m6 left">
+            <h5><i class="tiny material-icons">people_outline</i> จัดการข้อมูลประเภทสมาชิก</h5>
+        </div>
+        <div class="col s12 m6 right-align">
             <a href="#creattypemem" class="waves-effect waves-light btn  modal-trigger"><i class="material-icons left">group_add</i>ประเภทสมาชิก</a>
         </div>
     </div>
