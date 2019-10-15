@@ -33,16 +33,14 @@ $(document).ready(function() {
                 var elDate1 = document.querySelector('#date1');
                 var elDate2 = document.querySelector('#date2');
 
-                if(document.querySelector('#date1').value==""){
-                    //M.Datepicker.getInstance(element).setDate(new Date(year,month,day), true);
+                if(elDate1.value==""){
                     $("#date1").datepicker("setDate",new Date(year,month,day));
                 }else{
                     M.Datepicker.getInstance(elDate1).setDate(new Date(elDate1.value), true);
                 }
 
-                if(document.querySelector('#date2').value==""){
-                    //M.Datepicker.getInstance(element).setDate(new Date(year,month,day), true);
-                    $("#date2").datepicker("setDate",new Date(year,month,day));
+                if(elDate2.value==""){
+                    $("#date2").datepicker("setDate",new Date(elDate1.value));
                 }else{
                     M.Datepicker.getInstance(elDate2).setDate(new Date(elDate2.value), true);
                 }

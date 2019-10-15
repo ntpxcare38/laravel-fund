@@ -42,7 +42,6 @@
 // });
 
 setBillModal = (
-    mem_id,
     mem_no,
     mem_card_id,
     mem_title,
@@ -62,7 +61,6 @@ setBillModal = (
     amount_ben
     ) => {
 
-    document.getElementById("mem_id").textContent=(mem_id);
     document.getElementById("mem_no").textContent=(mem_no);
     document.getElementById("mem_card_id").textContent=(mem_card_id);
 

@@ -18,7 +18,10 @@ class BenefitMemberController extends Controller
     {
         $fund = FundInformation::find(1);
         $mem = Member::where('mem_id','=',$id)->first();
-        $bens = Benefit::where('mem_id','=',$mem->mem_id)->get();
+        $bens = Benefit::where('mem_id','=',$mem->mem_id)
+                            ->orderBy('benefit_date', 'DESC')
+                            ->orderBy('mem_id', 'DESC')
+                            ->get();
         $bensCount = Benefit::where('mem_id','=',$mem->mem_id)->count();
         $btypes = BenefitType::all();
         $sumBen = Benefit::selectRaw("SUM(benefit_price) as benefit_total")

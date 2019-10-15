@@ -15,7 +15,8 @@ class Account extends Model
         'group_acid',
         'acc_piece',
         'acc_price',
-        'acc_total'
+        'acc_total',
+        'acc_file'
     ];
     public $timestamps = false;
 }

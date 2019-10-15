@@ -27,6 +27,7 @@ class ComplaintForOfficerController extends Controller
         $fund = FundInformation::find(1);
         $comps = Complaint::select('complaint.*','members.mem_id','members.mem_no','members.mem_fname','members.mem_lname')
                             ->join('members', 'complaint.mem_id', '=', 'members.mem_id')
+                            ->orderBy('comp_date', 'DESC')
                             ->orderBy('comp_id', 'DESC')
                             ->paginate($per_page);
         return view('complaint.complaint_show', compact('comps','fund'));
@@ -45,12 +46,14 @@ class ComplaintForOfficerController extends Controller
         if($searchDate == ''){
             $comps = Complaint::select('complaint.*','members.mem_id','members.mem_no','members.mem_fname','members.mem_lname')
                                 ->join('members', 'complaint.mem_id', '=', 'members.mem_id')
+                                ->orderBy('comp_date', 'DESC')
                                 ->orderBy('comp_id', 'DESC')
                                 ->paginate($per_page);
         }else if($searchDate != ''){
             $comps = Complaint::select('complaint.*','members.mem_id','members.mem_no','members.mem_fname','members.mem_lname')
                             ->join('members', 'complaint.mem_id', '=', 'members.mem_id')
                             ->where('comp_date', '>=', $searchDate)
+                            ->orderBy('comp_date', 'DESC')
                             ->orderBy('comp_id', 'DESC')
                             ->paginate($per_page);
         }

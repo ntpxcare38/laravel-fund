@@ -47,7 +47,7 @@
                         </div>
                 </form>
             </div>
-            <div class="col s2 m1 perPageList left">
+            <div class="col s3 m1 perPageList left">
                     <form role="form" class="form-inline" method="get" action='{{ url('/comp_view') }}'>
                     <label>รายการ
                     <select name="per_page" onchange="this.form.submit()" class="form-control input-sm">
@@ -66,7 +66,6 @@
                     <thead>
 
                       <tr>
-                          <th class="center-align">รายการ</th>
                           <th class="center-align">วันที่ร้องเรียน</th>
                           <th class="left-align">เรื่องร้องเรียน</th>
                           <th class="center-align">ดูข้อมูล</th>
@@ -78,9 +77,6 @@
                         @foreach ($comps as $comp)
                         <tr>
                             <td class="center-align">
-                                {{ $comp->comp_id}}
-                            </td>
-                            <td class="center-align">
                              <?php   $date_c = DateThaiShort($comp->comp_date); ?>
                                 {{ $date_c }}
                             </td>
@@ -91,8 +87,7 @@
                                  <?php $detail =  $comp->comp_detail; ?>
                                 <div class="btn-edit">
                                     <a href="#" class="modal-trigger" data-toggle="modal" data-target="modal1"
-                                    onClick="setBillModal('<?php echo   $comp->comp_id. '\',\''.
-                                                                        $comp->mem_no. '\',\''.
+                                    onClick="setBillModal('<?php echo   $comp->mem_no. '\',\''.
                                                                         $comp->mem_fname. '\',\''.
                                                                         $comp->mem_lname. '\',\''.
                                                                         $date_c. '\',\''.
@@ -129,9 +124,6 @@
             <div class="modal-content">
                 <h5>ข้อมูลร้องเรียน</h5>
                 <div class="row">
-                    <div class="col s12 m3">
-                        รายการ : <label><span id="comp_id" ></span></label>
-                    </div>
                     <div class="col s12 m9">
                         เลขที่สมาชิก : <label><span id="mem_no"></span> คุณ<span id="mem_fname"></span> <span id="mem_lname"></span></label>
                     </div>

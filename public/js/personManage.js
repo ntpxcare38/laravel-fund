@@ -1,5 +1,4 @@
 setBillModal = (
-    p_id,
     p_title,
     p_fname,
     p_lname,
@@ -10,8 +9,6 @@ setBillModal = (
     type_per,
     p_username
     ) => {
-
-    document.getElementById("p_id").textContent=(p_id);
 
     if(p_title==1){
         document.getElementById("p_title").textContent=("นาย");

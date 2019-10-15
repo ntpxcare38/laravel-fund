@@ -6,7 +6,6 @@ var year = dateObj.getUTCFullYear()+543;
 
 
 $(document).ready(function() {
-
     const Calender = document.querySelectorAll('.datepicker');
     M.Datepicker.init(Calender, {
         //setDefaultDate:true,
@@ -33,19 +32,20 @@ $(document).ready(function() {
                 var elDate1 = document.querySelector('#date1');
                 var elDate2 = document.querySelector('#date2');
 
-                if(document.querySelector('#date1').value==""){
+                if(elDate1.value==""){
                     //M.Datepicker.getInstance(element).setDate(new Date(year,month,day), true);
                     $("#date1").datepicker("setDate",new Date(year,month,day));
                 }else{
                     M.Datepicker.getInstance(elDate1).setDate(new Date(elDate1.value), true);
                 }
 
-                if(document.querySelector('#date2').value==""){
+                if(elDate2.value==""){
                     //M.Datepicker.getInstance(element).setDate(new Date(year,month,day), true);
-                    $("#date2").datepicker("setDate",new Date(year,month,day));
+                    $("#date2").datepicker("setDate",new Date(elDate1.value));
                 }else{
                     M.Datepicker.getInstance(elDate2).setDate(new Date(elDate2.value), true);
                 }
+
         }
 
 

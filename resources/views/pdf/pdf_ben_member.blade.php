@@ -107,18 +107,18 @@
 <table>
         <thead>
           <tr>
-              <th align="center">รายการ</th>
+              <th align="center">ลำดับที่</th>
               <th align="center">วันที่ทำรายการ</th>
               <th>สวัสดิการ</th>
               <th>หมายเหตุ</th>
               <th align="right">จำนวนเงิน</th>
           </tr>
         </thead>
-
+        <?php $i=1; ?>
         <tbody>
-            @foreach ($bens->reverse() as $ben)
+            @foreach ($bens as $ben)
             <tr>
-                <td align="center">{{ $ben->benefit_id}}</td>
+                <td align="center">{{ $i}}</td>
                 <td align="center">{{ DateThaiShort($ben->benefit_date)}}</td>
                 <td>@foreach ($btypes as $btype)
                     @if($ben->type_bid==$btype->type_bid)
@@ -135,7 +135,7 @@
                     @endif{{ $ben->benefit_annotation}}</td>
                 <td align="right">{{ number_format($ben->benefit_price, 2) }}</td>
             </tr>
-
+            <?php $i++; ?>
             @endforeach
         </tbody>
       </table>

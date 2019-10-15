@@ -100,7 +100,6 @@
 <body>
 <label>{{"พิมพ์เมื่อ : ".DateThai($now)}}</label>
 <b>ข้อมูลสมาชิก คุณ{{ $mem->mem_fname}} {{ $mem->mem_lname}}</b><br>
-ลำดับที่ <u>&nbsp;&nbsp;{{ $mem->mem_id}}&nbsp;&nbsp;</u>&nbsp;&nbsp;
 เลขที่สมาชิก <u>&nbsp;&nbsp;{{ $mem->mem_no}}&nbsp;&nbsp;</u>&nbsp;&nbsp;
 เลขประจำตัวประชาชน <u>&nbsp;&nbsp;{{ $mem->mem_card_id}}&nbsp;&nbsp;</u>&nbsp;&nbsp;
 <br>

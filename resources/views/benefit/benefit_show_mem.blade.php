@@ -46,7 +46,6 @@
                 <thead>
 
                   <tr>
-                      <th class="center-align">รายการ</th>
                       <th class="center-align">วันที่ทำรายการ</th>
                       <th>สวัสดิการ</th>
                       <th>หมายเหตุ</th>
@@ -56,9 +55,8 @@
 
                 <tbody>
 
-                    @foreach ($bens->reverse() as $ben)
+                    @foreach ($bens as $ben)
                     <tr>
-                        <td class="center-align">{{ $ben->benefit_id}}</td>
                         <td class="center-align">{{ DateThaiShort($ben->benefit_date)}}</td>
                         <td>@foreach ($btypes as $btype)
                                 @if($ben->type_bid==$btype->type_bid)
@@ -76,7 +74,6 @@
                     <tr>
                            <td></td>
                            <td></td>
-                           <td></td>
                            <td><label>ไม่มีข้อมูลการเบิก</label></td>
                            <td></td>
                     </tr>
@@ -85,9 +82,8 @@
                     <tr>
                         <td></td>
                         <td></td>
-                        <td></td>
                         <td>รวมทั้งสิ้น</td>
-                        <td class="right-align">{{ number_format($sum->benefit_total, 2) }} บาท</td>
+                        <td class="right-align"><u>{{ number_format($sum->benefit_total, 2) }}</u> บาท</td>
                     </tr>
                     @endforeach
                 </tbody>

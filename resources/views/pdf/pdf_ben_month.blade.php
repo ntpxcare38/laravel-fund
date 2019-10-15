@@ -96,14 +96,14 @@
         {{-- <p align="center"><b>ข้อมูลการจ่าย{{$msgHead}} {{$fund->fund_name}} รหว่าง {{DateThaiShort($dateStart)}} ถึง {{DateThaiShort($dateEnd)}}</b></p> --}}
         <table>
                 <tr align="center">
-                      <th colspan="7">ข้อมูลการจ่าย{{$msgHead}} {{$fund->fund_name}} รหว่าง {{DateThaiShort($dateStart)}} ถึง {{DateThaiShort($dateEnd)}}</th>
+                      <th colspan="7">ข้อมูลการจ่าย{{$msgHead}} {{$fund->fund_name}} ระหว่าง {{DateThaiShort($dateStart)}} ถึง {{DateThaiShort($dateEnd)}}</th>
                   </tr>
                 <thead>
                   <tr align="center">
-                      <td><b>รายการ</b></td>
-                      <td align="left"><b>ชื่อ - สกุล</b></td>
-                      <td><b>เลขที่สมาชิก</b></td>
+                      <td><b>ลำดับที่</b></td>
                       <td><b>วันที่ทำรายการ</b></td>
+                      <td><b>เลขที่สมาชิก</b></td>
+                      <td align="left"><b>ชื่อ - สกุล</b></td>
                       <td><b>ประเภทสวัสดิการ</b></td>
                       <td align="right"><b>จำนวนเงิน</b></td>
                       <td align="left"><b>หมายเหตุ</b></td>
@@ -112,13 +112,18 @@
                 <tbody>
                 <?php
                     $total = 0;
+                    $i= 1;
                 ?>
                 @foreach ($bens as $ben)
                 <tr>
-                        <td align="center">{{ $ben->benefit_id}}</td>
+                        <td align="center">{{ $i}}</td>
+                        <td align="center">{{ DateThaiShort($ben->benefit_date)}}</td>
                             @foreach ($mems as $mem)
 
                                 @if($mem->mem_id == $ben->mem_id)
+                                <td align="center">
+                                    {{ $mem->mem_no}}
+                                </td>
                                 <td align="left">
                                         @if($mem->mem_title==1) {{"นาย"}}{{$mem->mem_fname}} {{ $mem->mem_lname}}@endif
                                         @if($mem->mem_title==2) {{"นาง"}}{{$mem->mem_fname}} {{ $mem->mem_lname}}@endif
@@ -126,12 +131,8 @@
                                         @if($mem->mem_title==4) {{"เด็กชาย"}}{{$mem->mem_fname}} {{ $mem->mem_lname}}@endif
                                         @if($mem->mem_title==5) {{"เด็กหญิง"}}{{$mem->mem_fname}} {{ $mem->mem_lname}}@endif
                                 </td>
-                                <td align="center">
-                                    {{ $mem->mem_no}}
-                                </td>
                                 @endif
                             @endforeach
-                        <td align="center">{{ DateThaiShort($ben->benefit_date)}}</td>
                         <td align="center">
                             @foreach ($btypes as $bype)
                                 @if($bype->type_bid == $ben->type_bid){{ $bype->type_bname}}@endif
@@ -143,6 +144,7 @@
                             @if($ben->benefit_annotation ==''){{ '-'}}@else {{ $ben->benefit_annotation}}@endif
                         </td>
                 </tr>
+                <?php $i++; ?>
                 @endforeach
                 <tr>
                     <td align="center" colspan="5"><b>รวมทั้งหมด</b></td>

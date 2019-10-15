@@ -32,7 +32,7 @@ function DateThaiShort($now)
                         <i class="material-icons prefix">search</i>
                         <input name="per_page" type="hidden" value="{{ request()->per_page }}">
                         <input name="ac_search" type="text" id="ac_search" class="autocomplete" value="{{ request()->ac_search }}">
-                        <label for="ac_search">ค้นหารายการ, ชื่อรายการ</label>
+                        <label for="ac_search">ค้นหาชื่อรายการ</label>
                 </div>
                 <div class="input-field col s7 m3">
                         <i class="material-icons prefix">date_range</i>
@@ -47,7 +47,7 @@ function DateThaiShort($now)
                     <a href="/ac/create" class="btn waves-effect waves-light btn-black"><i class="material-icons left">playlist_add</i>เพิ่มรายการ</a>
                 </div>
             </div>
-            <div class="col s2 m1 perPageList left">
+            <div class="col s3 m1 perPageList left">
                 <form role="form" class="form-inline" method="get" action='{{ url('/ac') }}'>
                 <label>รายการ
                 <select name="per_page" onchange="this.form.submit()" class="form-control input-sm">
@@ -67,14 +67,12 @@ function DateThaiShort($now)
                 <thead>
 
                   <tr>
-                      <th class="center">รายการ</th>
-                      <th>ชื่อรายการ</th>
                       <th class="center">วันที่ทำรายการ</th>
+                      <th>ชื่อรายการ</th>
                       <th class="center">หมวด</th>
                       <th class="center">ประเภท</th>
-                      <th><div class="columnMoney">จำนวน</div></th>
-                      <th><div class="columnMoney">ราคา</div></th>
-                      <th><div class="columnMoney">รวม</div></th>
+                      <th><div class="columnMoney">รวมเงิน</div></th>
+                      <th class="center">ดูข้อมูล</th>
                       <th class="center">แก้ไข</th>
                       <th class="center">ลบ</th>
                   </tr>
@@ -84,35 +82,63 @@ function DateThaiShort($now)
 
                     @foreach ($acs as $ac)
                     <tr>
-                        <td class="center">{{ $ac->acc_id}}</td>
-                        <td width="25%">{{ $ac->acc_name}}</td>
                         <td class="center">{{ DateThaiShort($ac->acc_date) }}</td>
-                        <td class="center">
-                            @foreach ($gcs as $gc)
-                                @if($ac->group_acid==$gc->group_acid)
-                                    {{$gc->group_acname}}
-                                @endif
-                            @endforeach
-                        </td>
-                        <td class="center">
-                            @foreach ($gcs as $gc)
-                                @if($gc->group_acid==$ac->group_acid)
-                                    @if($gc->type_acc==1)
-                                        รายรับ
-                                    @elseif($gc->type_acc==2)
-                                        รายได้
-                                    @elseif($gc->type_acc==3)
-                                        รายจ่าย
-                                    @elseif($gc->type_acc==4)
-                                        ค่าใช้จ่าย
+                        <td width="25%">{{ $ac->acc_name}}</td>
+                        @foreach ($gcs as $gc)
+                                    @if($gc->group_acid==$ac->group_acid)
+                                        <?php
+                                            $gacname = $gc->group_acname;
+                                            $gactype = $gc->type_acc;
+                                        ?>
+                                        <td class="center">
+                                            {{$gacname}}
+                                        </td>
+                                        <td class="center">
+                                            @if($gc->type_acc==1)
+                                                รายรับ
+                                            @elseif($gc->type_acc==2)
+                                                รายได้
+                                            @elseif($gc->type_acc==3)
+                                                <font color="red">รายจ่าย</font>
+                                            @elseif($gc->type_acc==4)
+                                                <font color="red"> ค่าใช้จ่าย</font>
+                                            @endif
+                                        </td>
                                     @endif
-                                @endif
                             @endforeach
-                        </td>
+                        <?php
+                            $acPrice = 0;
+                            $acTotal = 0;
 
-                        <td><div class="columnMoney">{{ $ac->acc_piece }}</div></td>
-                        <td><div class="columnMoney">{{ number_format($ac->acc_price, 2) }}</div></td>
+                            $acDate = DateThaiShort($ac->acc_date);
+                            $acPrice = number_format($ac->acc_price,2);
+                            $acTotal = number_format($ac->acc_total,2);
+                            if($ac->acc_file==''){
+                                $acc_file = 'javascript:;';
+                            }
+                            else{
+                                $acc_file = 'view/'.$ac->acc_file;
+                            }
+
+                        ?>
                         <td><div class="columnMoney">{{ number_format($ac->acc_total, 2) }}</div></td>
+                        <td class="center-align">
+                            <div class="btn-edit">
+                                    <a href="#" class="modal-trigger" data-toggle="modal" data-target="modal1"
+                                    onClick="setBillModal('<?php echo
+                                                                        $acDate. '\',\''.
+                                                                        $ac->acc_name. '\',\''.
+                                                                        $gacname. '\',\''.
+                                                                        $gactype. '\',\''.
+                                                                        $ac->acc_piece. '\',\''.
+                                                                        $acPrice. '\',\''.
+                                                                        $acTotal. '\',\''.
+                                                                        $acc_file;?>')">
+                                            <i class="small material-icons">pageview</i>
+                                        </a>
+                                    </div>
+
+                        </td>
                         <td class="center">
                             <div class="btn-edit">
                                 <a href='/ac/{{$ac->acc_id}}/edit'><i class='small material-icons'>mode_edit</i></a>
@@ -149,6 +175,29 @@ function DateThaiShort($now)
                 </ul>
 
 </div>
+<div class="showMem">
+    <div id="modal1" class="modal">
+            <div class="modal-content">
+                <h5>ข้อมูลรายรับ-รายจ่าย</h5>
+
+                <div class="row">
+                    <ul>
+                        <li>เอกสารแนบ : <a target="blank" id="acc_file" class="btn-floating btn-small waves-effect waves-light #45baaa right"><i class="material-icons left">attach_file</i></a></li>
+                        <li>วันที่ทำรายการ : <label><span id="acDate"></span></label></li>
+                        <li>ชื่อรายการ : <label><span id="acc_name"></span></label></li>
+                        <li>หมวด : <label><span id="gacname"></span></label></li>
+                        <li>ประเภท : <label><span id="gactype"></span></label></li>
+                        <li>จำนวน : <label class="right"><span id="acc_piece"></span> หน่วย</label></li>
+                        <li>ราคา : <label class="right"><span id="acPrice"></span> บาท</label></li>
+                        <li>รวมเงิน : <label class="right"><span id="acTotal"></span> บาท</label></li><br>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="modal-action modal-close btn-flat">CLOSE</button>
+                </div>
+            </div>
+    </div>
+</div>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="{{ asset('js/account.js') }}"></script>
 <script type="text/javascript">
@@ -162,9 +211,7 @@ function DateThaiShort($now)
                             let amonutArr = []
                             memnoArray.forEach(value => {
                                 //const mergeValue = `${value.mem_no} ${value.mem_fname} ${value.mem_lname}`
-                                const mergeValueId = `${value.acc_id}`
                                 const mergeValueName = `${value.acc_name}`
-                                amonutArr[mergeValueId] = null
                                 amonutArr[mergeValueName] = null
                             })
                             $('input.autocomplete').autocomplete({

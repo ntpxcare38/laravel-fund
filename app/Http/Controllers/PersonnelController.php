@@ -59,8 +59,7 @@ class PersonnelController extends Controller
         //$searchDate = $request->get('mem_searchdate');
 
         if($search !=''){
-            $pers = Personnel::where('p_id','like','%'.$search)
-                            ->orWhere('p_fname','like','%'.$search.'%')
+            $pers = Personnel::where('p_fname','like','%'.$search.'%')
                             ->orWhere('p_lname','like','%'.$search.'%')
                             ->orderBy('p_id', 'DESC')
                             ->paginate($per_page);

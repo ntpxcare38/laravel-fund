@@ -85,3 +85,52 @@ function chkFrmAcEdit() {
     }
   }
 
+  setBillModal = (
+    acDate,
+    acc_name,
+    gacname,
+    gactype,
+    acc_piece,
+    acPrice,
+    acTotal,
+    acc_file
+    ) => {
+    document.getElementById("acDate").textContent=(acDate);
+    document.getElementById("acc_name").textContent=(acc_name);
+    document.getElementById("gacname").textContent=(gacname);
+
+    if(gactype==1){
+        document.getElementById("gactype").textContent=("รายรับ");
+    }else if(gactype==2){
+        document.getElementById("gactype").textContent=("รายได้");
+    }else if(gactype==3){
+        document.getElementById("gactype").textContent=("รายจ่าย");
+    }else if(gactype==4){
+        document.getElementById("gactype").textContent=("ค่าใช้จ่าย");
+    }
+
+    document.getElementById("acc_piece").textContent=(acc_piece);
+    document.getElementById("acPrice").textContent=(acPrice);
+    document.getElementById("acTotal").textContent=(acTotal);
+    document.getElementById("acc_file").href = acc_file;
+
+}
+
+function readURL() {
+
+    var extall="pdf";
+
+    file = document.formAc.acc_file.value;
+		ext = file.split('.').pop().toLowerCase();
+
+        if(parseInt(extall.indexOf(ext)) < 0) {
+			Swal.fire({
+                        title: 'ประเภทไฟล์ไม่ถูกต้อง',
+                        text: "กรุณาใช้นามสกุลไฟล์ .pdf",
+                        type: 'error',
+                        showConfirmButton: true
+                      })
+            document.getElementById("upFile").value = '';
+        }
+}
+

@@ -55,7 +55,7 @@
                         <a href="/mem/create" class="btn waves-effect waves-light btn-black"><i class="material-icons left">person_add</i>เพิ่มสมาชิก</a>
                     </div>
                 </div>
-                <div class="col s2 m1 perPageList left">
+                <div class="col s3 m1 perPageList left">
                     <form role="form" class="form-inline" method="get" action='{{ url('/mem') }}'>
                     <label>รายการ
                     <select name="per_page" onchange="this.form.submit()" class="form-control input-sm">
@@ -73,7 +73,6 @@
             <table class="highlight responsive-table centered">
                     <thead>
                       <tr>
-                          <th>ลำดับ</th>
                           <th>เลขสมาชิก</th>
                           <th>เลขประจำตัวประชาชน</th>
                           <th>ชื่อ-นามสกุล</th>
@@ -92,7 +91,6 @@
 
                         @foreach ($mems as $mem)
                         <tr>
-                            <td>{{ $mem->mem_id}}</td>
                             <td>{{ $mem->mem_no}}</td>
                             <td>{{ $mem->mem_card_id}}</td>
                             <td>
@@ -196,7 +194,7 @@
                             <td>
                                 <div class="btn-edit">
                                     <a href="#" class="modal-trigger" data-toggle="modal" data-target="modal1"
-                                    onClick="setBillModal('<?php echo   $mem->mem_id. '\',\''.
+                                    onClick="setBillModal('<?php echo
                                                                         $mem->mem_no. '\',\''.
                                                                         $mem->mem_card_id. '\',\''.
                                                                         $mem->mem_title. '\',\''.
@@ -229,11 +227,10 @@
                                 </div>
                             </td>
                         </tr>
-
                         @endforeach
 
                         @if(count($mems) == 0)
-                                <td colspan="12">ไม่พบข้อมูล</td>
+                                <td colspan="11">ไม่พบข้อมูล</td>
                         @endif
 
                     </tbody>
@@ -252,7 +249,6 @@
 
                 <div class="row">
                     <ul>
-                        <li>ลำดับที่ : <label><span id="mem_id" ></span></label></li>
                         <li>เลขที่สมาชิก : <label><span id="mem_no"></span></label></li>
                         <li>เลขประจำตัวประชาชน : <label><span id="mem_card_id"></span></label></li>
                         <li>ชื่อ : <label><span id="mem_title"></span><span id="mem_fname"> </span></label></li>

@@ -21,6 +21,7 @@ class CreateAccountTable extends Migration
             $table->integer('acc_piece');
             $table->decimal('acc_price',16,2);
             $table->decimal('acc_total',16,2);
+            $table->string('acc_file',255)->nullable()->default(null);
         });
     }
     /**

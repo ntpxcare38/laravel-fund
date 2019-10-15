@@ -34,7 +34,9 @@ class PdfExportMemberController extends Controller
     public function pdfBenMem($id)
     {
         $mem = Member::where('mem_id','=',$id)->first();
-        $bens = Benefit::where('mem_id','=',$mem->mem_id)->get();
+        $bens = Benefit::where('mem_id','=',$mem->mem_id)
+                            ->orderBy('benefit_date', 'ASC')
+                            ->get();
         $btypes = BenefitType::all();
         $sumBen = Benefit::selectRaw("SUM(benefit_price) as benefit_total")
                         ->where('mem_id','=',$mem->mem_id)->get();

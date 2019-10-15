@@ -31,7 +31,8 @@ class BenefitController extends Controller
 
         $fund = FundInformation::find(1);
         $btypes = BenefitType::all();
-        $bens = Benefit::orderBy('benefit_id', 'DESC')
+        $bens = Benefit::orderBy('benefit_date', 'DESC')
+                            ->orderBy('benefit_id', 'DESC')
                             ->join('members', 'benefit.mem_id', '=', 'members.mem_id')
                             ->select('benefit.*','members.mem_no','members.mem_fname', 'members.mem_lname')
                             ->paginate( $per_page);
@@ -83,6 +84,7 @@ class BenefitController extends Controller
         if($search =='' && $searchDate == ''){
             $bens = Benefit::select('benefit.*','members.mem_id','members.mem_no','members.mem_fname', 'members.mem_lname')
                             ->join('members', 'benefit.mem_id', '=', 'members.mem_id')
+                            ->orderBy('benefit_date', 'DESC')
                             ->orderBy('benefit_id', 'DESC')
                             ->paginate($per_page);
         }
@@ -90,11 +92,11 @@ class BenefitController extends Controller
             $bens= Benefit::select('benefit.*','members.mem_id','members.mem_no','members.mem_fname', 'members.mem_lname')
                             ->join('members', 'benefit.mem_id', '=', 'members.mem_id')
                             ->where(function($query) use($search){
-                                $query->where('benefit.benefit_id','like','%'.$search)
-                                        ->orWhere('members.mem_no','like','%'.$search.'%')
+                                $query->where('members.mem_no','like','%'.$search.'%')
                                         ->orWhere('members.mem_fname','like','%'.$search.'%')
                                         ->orWhere('members.mem_lname','like','%'.$search.'%');
                                 })
+                            ->orderBy('benefit_date', 'DESC')
                             ->orderBy('benefit_id', 'DESC')
                             ->paginate($per_page);
         }
@@ -104,6 +106,7 @@ class BenefitController extends Controller
                             ->where(function($query) use($searchDate){
                                 $query->where('benefit.benefit_date', '>=', $searchDate);
                                 })
+                            ->orderBy('benefit_date', 'DESC')
                             ->orderBy('benefit_id', 'DESC')
                             ->paginate($per_page);
         }
@@ -111,12 +114,12 @@ class BenefitController extends Controller
             $bens= Benefit::select('benefit.*','members.mem_id','members.mem_no','members.mem_fname', 'members.mem_lname')
                             ->join('members', 'benefit.mem_id', '=', 'members.mem_id')
                             ->where(function($query) use ($search,$searchDate) {
-                                $query->where('benefit.benefit_id','like','%'.$search)
-                                        ->orWhere('members.mem_no','like','%'.$search.'%')
+                                $query->where('members.mem_no','like','%'.$search.'%')
                                         ->orWhere('members.mem_fname','like','%'.$search.'%')
                                         ->orWhere('members.mem_lname','like','%'.$search.'%')
                                         ->where('benefit.benefit_date', '>=', $searchDate);
                             })
+                            ->orderBy('benefit_date', 'DESC')
                             ->orderBy('benefit_id', 'DESC')
                             ->paginate($per_page);
         }

@@ -18,7 +18,7 @@
                     <i class="material-icons prefix">search</i>
                         <input name="per_page" type="hidden" value="{{ request()->per_page }}">
                         <input name="per_search" type="text" id="per_search" class="autocomplete" value="{{ request()->per_search }}">
-                        <label for="per_search">ค้นหาลำดับ ,ชื่อสกุล</label>
+                        <label for="per_search">ค้นหาชื่อ-นามสกุล</label>
                 </div>
                 <div class="input-field col s12 m2 center">
                         <button class="btn waves-effect waves-light btn-black" type="submit" name="action" >ค้นหา</button>
@@ -28,7 +28,7 @@
                     <a href="/per/create" class="btn waves-effect waves-light btn-black"><i class="material-icons left">person_add</i>เพิ่มบุคลากร</a>
                 </div>
             </div>
-            <div class="col s2 m1 perPageList left">
+            <div class="col s3 m1 perPageList left">
                 <form role="form" class="form-inline" method="get" action='{{ url('/per') }}'>
                 <label>รายการ
                 <select name="per_page" onchange="this.form.submit()" class="form-control input-sm">
@@ -43,22 +43,20 @@
             </div>
         </div>
 
-        <table class="highlight responsive-table centered">
+        <table class="highlight responsive-table">
                 <thead>
                     <tr>
-                      <th>ลำดับ</th>
-                      <th>ชื่อ-นามสกุล</th>
-                      <th>ตำแหน่งในกองทุน</th>
-                      <th>ตำแหน่งในชุมชน</th>
-                      <th>ประเภทผู้ใช้</th>
-                      <th>ดูข้อมูล</th>
-                      <th>แก้ไข</th>
+                      <th class="left-align">ชื่อ-นามสกุล</th>
+                      <th class="center-align">ตำแหน่งในกองทุน</th>
+                      <th class="center-align">ตำแหน่งในชุมชน</th>
+                      <th class="center-align">ประเภทผู้ใช้</th>
+                      <th class="center-align">ดูข้อมูล</th>
+                      <th class="center-align">แก้ไข</th>
                     </tr>
                 </thead>
                 <tbody>
                 @foreach ($pers as $per)
                     <tr>
-                        <td>{{ $per->p_id}}</td>
                         <td>
                             @if($per->p_title==1)
                                 นาย{{$per->p_fname}} {{ $per->p_lname}}
@@ -69,7 +67,7 @@
                             @endif
 
                         </td>
-                        <td>
+                        <td class="center-align">
                             @foreach ($pfunds as $pfund)
                                 @if($per->position_fid==$pfund->position_fid)
                                     {{$pfund->position_fname}}
@@ -77,7 +75,7 @@
                                 @endif
                             @endforeach
                         </td>
-                        <td>
+                        <td class="center-align">
                             @foreach ($pcoms as $pcom)
                                 @if($per->position_cid==$pcom->position_cid)
                                     {{$pcom->position_cname}}
@@ -85,7 +83,7 @@
                                 @endif
                             @endforeach
                         </td>
-                        <td>
+                        <td class="center-align">
                             @if($per->type_pid==1)
                                 ผู้ดูและระบบ
                             @elseif($per->type_pid==2)
@@ -97,10 +95,10 @@
                             @endif
 
                         </td>
-                        <td>
+                        <td class="center-align">
                             <div class="btn-edit">
                                     <a href="#" class="modal-trigger" data-toggle="modal" data-target="modal1"
-                                    onClick="setBillModal('<?php echo   $per->p_id. '\',\''.
+                                    onClick="setBillModal('<?php echo
                                                                         $per->p_title. '\',\''.
                                                                         $per->p_fname. '\',\''.
                                                                         $per->p_lname. '\',\''.
@@ -115,7 +113,7 @@
                                     </div>
 
                         </td>
-                        <td>
+                        <td class="center-align">
                             <div class="btn-edit">
                                 <a href='/per/{{$per->p_id}}/edit'><i class='small material-icons'>mode_edit</i></a>
                             </div>
@@ -127,7 +125,6 @@
                 @endforeach
 
                 @if(count($pers) == 0)
-                            <td></td>
                             <td></td>
                             <td></td>
                             <td colspan="2">ไม่พบข้อมูล</td>
@@ -162,7 +159,6 @@
                                     <div class="col s12 m112 right-align">
                                         <a id="linkImage" class="btn-floating btn-small waves-effect waves-light #45baaa"><i class="material-icons left">file_download</i></a>
                                     </div>
-                            <li>ลำดับที่ : <label><span id="p_id" ></span></label></li>
                             <li>ชื่อ : <label><span id="p_title"></span><span id="p_fname"> </span></label></li>
                             <li>นามสกุล : <label><span id="p_lname"></span></label></li>
                             <li>ตำแหน่งในกองทุน : <label><span id="position_f"></span></label></li>
@@ -191,10 +187,8 @@
                             let amonutArr = []
                             memnoArray.forEach(value => {
                                 //const mergeValue = `${value.mem_no} ${value.mem_fname} ${value.mem_lname}`
-                                const mergeValueId = `${value.p_id}`
                                 const mergeValueFname = `${value.p_fname}`
                                 const mergeValueLname = `${value.p_lname}`
-                                amonutArr[mergeValueId] = null
                                 amonutArr[mergeValueFname] = null
                                 amonutArr[mergeValueLname] = null
                             })

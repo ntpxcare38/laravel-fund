@@ -104,7 +104,7 @@
         <table>
                 <thead>
                   <tr align="center">
-                      <th>ลำดับ</th>
+                      <th>ลำดับที่</th>
                       <th>เลขสมาชิก</th>
                       <th>เลขประจำตัวประชาชน</th>
                       <th>ชื่อ-นามสกุล</th>
@@ -122,12 +122,11 @@
                       <th>ยอดเงินสะสมปัจจุบัน</th>
                   </tr>
                 </thead>
-
+                <?php $i=1; ?>
                 <tbody>
-
-                    @foreach ($mems->reverse() as $mem)
+                    @foreach ($mems as $mem)
                     <tr>
-                        <td align="center">{{ $mem->mem_id}}</td>
+                        <td align="center">{{ $i}}</td>
                         <td align="center">{{ $mem->mem_no}}</td>
                         <td align="center">{{ $mem->mem_card_id}}</td>
                         <td>
@@ -213,6 +212,7 @@
                             ?>
                         </td>
                     </tr>
+                    <?php $i++; ?>
                     @endforeach
                 </tbody>
               </table>

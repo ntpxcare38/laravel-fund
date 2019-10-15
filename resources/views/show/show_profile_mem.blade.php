@@ -46,9 +46,6 @@
         </div>
         <div class="row">
             <div class="col s12 m6">
-                ลำดับที่ : {{$mem->mem_id}}
-            </div>
-            <div class="col s12 m6">
                 เลขที่สมาชิก : {{$mem->mem_no}}
             </div>
             <div class="col s12 m6">

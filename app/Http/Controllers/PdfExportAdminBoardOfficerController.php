@@ -34,7 +34,7 @@ class PdfExportAdminBoardOfficerController extends Controller
 
     public function pdfmemall()
     {
-        $mems = Member::all();
+        $mems = Member::orderBy('mem_id', 'ASC')->get();
         $vils = Village::all();
         $mtypes = MemberType::all();
         $fund = FundInformation::find(1);
@@ -54,6 +54,7 @@ class PdfExportAdminBoardOfficerController extends Controller
 
         $yearOldMem = $request->year_omem;
         $mems = Member::whereDate('mem_birthdate', '<',$expDate)
+                            ->orderBy('mem_id', 'ASC')
                             ->where('mem_status','=',1)
                             ->where('register_date','like','%'.$yearOldMem.'%')
                             ->get();

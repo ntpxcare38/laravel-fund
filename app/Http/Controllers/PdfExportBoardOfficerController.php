@@ -120,14 +120,14 @@ class PdfExportBoardOfficerController extends Controller
         $btypes = BenefitType::all();
         if($status == 1){
             $msgHead = 'สวัสดิการผู้สูงอายุ';
-            $bens = Benefit::orderBy('benefit_id', 'DESC')
+            $bens = Benefit::orderBy('benefit_id', 'ASC')
                         ->whereBetween('benefit_date', [$dateStart, $dateEnd])
                         ->where('type_bid','=',3)
                         ->get();
         }
         else{
             $msgHead = 'สวัสดิการทั้งหมด (ยกเว้นสวัสดิการผู้สูงอายุ)';
-            $bens = Benefit::orderBy('benefit_date', 'DESC')
+            $bens = Benefit::orderBy('benefit_date', 'ASC')
                         ->whereBetween('benefit_date', [$dateStart, $dateEnd])
                         ->where('type_bid','!=',3)
                         ->get();

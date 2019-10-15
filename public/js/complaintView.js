@@ -42,7 +42,6 @@ $(document).ready(function() {
 
 
 setBillModal = (
-    comp_id,
     mem_no,
     mem_fname,
     mem_lname,
@@ -50,7 +49,6 @@ setBillModal = (
     comp_title,
     comp_detail
     ) => {
-    document.getElementById("comp_id").textContent=(comp_id);
     document.getElementById("mem_no").textContent=(mem_no);
     document.getElementById("mem_fname").textContent=(mem_fname);
     document.getElementById("mem_lname").textContent=(mem_lname);

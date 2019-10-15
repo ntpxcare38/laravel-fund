@@ -74,6 +74,7 @@
         'uses' => 'AccountController@destroy',
         'as' => 'ac.destroy',
     ]);
+    Route::get('/view/{path}/{filename}','AccountController@download');
 
     // ------------------ Group Account Manage -------------------
     Route::resource('/gc','GroupAccController');

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Account;
 use App\GroupAcc;
 use App\FundInformation;
+use File;
 
 class AccountController extends Controller
 {
@@ -28,7 +29,10 @@ class AccountController extends Controller
         }
 
         $fund = FundInformation::find(1);
-        $acs = Account::orderBy('acc_id', 'DESC')->paginate( $per_page);
+        $acs = Account::orderBy('acc_date', 'DESC')
+                            ->orderBy('acc_id', 'DESC')
+                            ->paginate( $per_page);
+
         $gcs = GroupAcc::all();
 
         return view('account.account_manage',compact('acs','gcs','fund'));
@@ -56,22 +60,25 @@ class AccountController extends Controller
         $searchDate = $request->get('acc_searchdate');
 
         if($search =='' && $searchDate == ''){
-            $acs = Account::orderBy('acc_id', 'DESC')->paginate($per_page);
+            $acs = Account::orderBy('acc_date', 'DESC')
+                            ->orderBy('acc_id', 'DESC')
+                            ->paginate($per_page);
         }else if($search !='' && $searchDate == ''){
-            $acs = Account::where('acc_id','like','%'.$search)
-                            ->orWhere('acc_name','like','%'.$search.'%')
+            $acs = Account::Where('acc_name','like','%'.$search.'%')
+                            ->orderBy('acc_date', 'DESC')
                             ->orderBy('acc_id', 'DESC')
                             ->paginate($per_page);
         }else if($search =='' && $searchDate != ''){
             $acs = Account::where('acc_date', '=', $searchDate)
+                            ->orderBy('acc_date', 'DESC')
                             ->orderBy('acc_id', 'DESC')
                             ->paginate($per_page);
         }else if($search !='' && $searchDate !=''){
             $acs = Account::where(function($query) use ($search) {
-                                $query->where('acc_id', 'like', '%'.$search)
-                                        ->orWhere('acc_name', 'like', '%'.$search.'%');
+                                $query->where('acc_name', 'like', '%'.$search.'%');
                             })
                             ->where('acc_date', '=', $searchDate)
+                            ->orderBy('acc_date', 'DESC')
                             ->orderBy('acc_id', 'DESC')
                             ->paginate($per_page);
         }
@@ -100,6 +107,8 @@ class AccountController extends Controller
     public function store(Request $request)
     {
         //return $request;
+        $path = $request->file('acc_file');
+
         $this->validate($request,
         [
             'acc_name' => 'required',
@@ -110,16 +119,31 @@ class AccountController extends Controller
             'acc_total' => 'required'
         ]);
 
-        $ac = new Account(
-            [
-                'acc_name' => $request->get('acc_name'),
-                'acc_date' => $request->get('acc_date'),
-                'group_acid' => $request->get('group_acid'),
-                'acc_piece' => $request->get('acc_piece'),
-                'acc_price' => $request->get('acc_price'),
-                'acc_total' => $request->get('acc_total')
-            ]
-        );
+        if($path ==''){
+            $ac = new Account(
+                [
+                    'acc_name' => $request->get('acc_name'),
+                    'acc_date' => $request->get('acc_date'),
+                    'group_acid' => $request->get('group_acid'),
+                    'acc_piece' => $request->get('acc_piece'),
+                    'acc_price' => $request->get('acc_price'),
+                    'acc_total' => $request->get('acc_total')
+                ]
+            );
+        }else{
+            $path = $request->file('acc_file')->store('file','public');
+            $ac = new Account(
+                [
+                    'acc_name' => $request->get('acc_name'),
+                    'acc_date' => $request->get('acc_date'),
+                    'group_acid' => $request->get('group_acid'),
+                    'acc_piece' => $request->get('acc_piece'),
+                    'acc_price' => $request->get('acc_price'),
+                    'acc_total' => $request->get('acc_total'),
+                    'acc_file' => $path
+                ]
+            );
+        }
         $ac->save();
         return redirect('/ac')->with('status', 'save');
     }
@@ -166,7 +190,13 @@ class AccountController extends Controller
             'acc_total' => 'required'
         ]);
 
-        $ac = Account::where('acc_id', '=', $id)->first();
+        $ac = Account::find($id);
+        if($request->hasFile('acc_file')){
+            if($ac->acc_file!=$request->acc_file){
+                File::delete(public_path('storage/'.$ac->acc_file));
+            }
+            $ac->acc_file = $request->file('acc_file')->store('file','public');
+        }
         $ac->acc_name = $request->acc_name;
         $ac->acc_date = $request->acc_date;
         $ac->group_acid = $request->group_acid;
@@ -187,5 +217,11 @@ class AccountController extends Controller
     {
         Account::where('acc_id',"=",$id)->delete();
         return redirect('ac')->with('status', 'delete');
+    }
+
+    public function download($path, $filename){
+
+        $path = public_path(). '/storage/'. $path.'/'.$filename;
+        return response()->file($path);
     }
 }

@@ -4,7 +4,7 @@
 <div class="container content-fund">
     <div class="cre-ac">
             <div class="row">
-                    <form action="/ac" method="post" onsubmit="return chkFrmAc()">
+                    <form action="/ac" name="formAc" method="post" onsubmit="return chkFrmAc()" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
                             <div class="input-field col s11 m11">
@@ -44,6 +44,17 @@
                                 <i class="material-icons prefix">functions</i>
                                 <input name="acc_total" type="text" id="total" class="validate" onkeyup="calculate()">
                                 <label for="icon_prefix">ผลรวม</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="file-field input-field col s11 m11">
+                                    <div class="btn-floating btn-meduim waves-effect waves-light #45baaa left">
+                                        <i class="small material-icons">attach_file</i>
+                                        <input id="upFile" name="acc_file" type="file" accept=".pdf" onchange="return readURL()">
+                                    </div>
+                                    <div class="file-path-wrapper">
+                                        <input class="file-path validate" type="text">
+                                    </div>
                             </div>
                         </div>
 

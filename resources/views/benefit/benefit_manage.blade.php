@@ -37,7 +37,7 @@
                         <i class="material-icons prefix">search</i>
                         <input name="per_page" type="hidden" value="{{ request()->per_page }}">
                         <input name="ben_search" type="text" id="ben_search" class="autocomplete" value="{{ request()->ben_search }}">
-                        <label for="ben_search">ค้นหารายการ, เลขสมาชิก</label>
+                        <label for="ben_search">ค้นหาเลขสมาชิก ,ชื่อ-นามสกุล</label>
                 </div>
                 <div class="input-field col s7 m3">
                         <i class="material-icons prefix">date_range</i>
@@ -52,7 +52,7 @@
                     <a href="/ben/create" class="btn waves-effect waves-light btn-black"><i class="material-icons left">playlist_add</i>เพิ่มรายการ</a>
                 </div>
             </div>
-            <div class="col s2 m1 perPageList left">
+            <div class="col s3 m1 perPageList left">
                 <form role="form" class="form-inline" method="get" action='{{ url('/ben') }}'>
                 <label>รายการ
                 <select name="per_page" onchange="this.form.submit()" class="form-control input-sm">
@@ -71,10 +71,9 @@
                 <thead>
 
                   <tr>
-                      <th class="center">รายการ</th>
+                      <th class="center-align">วันที่ทำรายการ</th>
                       <th>เลขสมาชิก</th>
                       <th>ชื่อสมาชิก</th>
-                      <th>วันที่ทำรายการ</th>
                       <th>สวัสดิการ</th>
                       <th>หมายเหตุ</th>
                       <th class="right-align">จำนวนเงิน</th>
@@ -87,10 +86,9 @@
 
                     @foreach ($bens as $ben)
                     <tr>
-                        <td class="center">{{ $ben->benefit_id}}</td>
+                        <td class="center-align">{{ DateThaiShort($ben->benefit_date)}}</td>
                         <td>{{ $ben->mem_no}}</td>
                         <td>{{ $ben->mem_fname}} {{ $ben->mem_lname}}</td>
-                        <td>{{ DateThaiShort($ben->benefit_date)}}</td>
                         <td>
                         @foreach ($btypes as $btype)
                             @if($ben->type_bid==$btype->type_bid)
@@ -152,11 +150,9 @@
                             let amonutArr = []
                             memnoArray.forEach(value => {
                                 //const mergeValue = `${value.mem_no} ${value.mem_fname} ${value.mem_lname}`
-                                const mergeValueId = `${value.benefit_id}`
                                 const mergeValueMemNo = `${value.mem_no}`
                                 const mergeValueMemFname = `${value.mem_fname}`
                                 const mergeValueMemLname = `${value.mem_lname}`
-                                amonutArr[mergeValueId] = null
                                 amonutArr[mergeValueMemNo] = null
                                 amonutArr[mergeValueMemFname] = null
                                 amonutArr[mergeValueMemLname] = null
