@@ -21,7 +21,7 @@ class PdfExportAdminOfficerController extends Controller
     public function pdfmem($id)
     {
         $mem = Member::where('mem_id','=',$id)->first();
-        $bens = Benefit::where('mem_id','=',$mem->mem_id)->orderBy('benefit_id', 'ASC')->get();
+        $bens = Benefit::where('mem_id','=',$mem->mem_id)->orderBy('benefit_date', 'ASC')->get();
         $btypes = BenefitType::all();
         $vils = Village::all();
         $mtypes = MemberType::all();
