@@ -39,7 +39,63 @@
 
 <title>Member.pdf</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<link rel="stylesheet" href="{{ public_path('css/fontsTHspk.css') }}">
+<style>
+        @font-face {
+            font-family: 'THSarabunNew';
+            font-style: normal;
+            font-weight: normal;
+            src: url("{{ public_path('fonts/THSarabunNew.ttf') }}") format('truetype');
+        }
+        @font-face {
+            font-family: 'THSarabunNew';
+            font-style: normal;
+            font-weight: bold;
+            src: url("{{ public_path('fonts/THSarabunNew Bold.ttf') }}") format('truetype');
+        }
+        @font-face {
+            font-family: 'THSarabunNew';
+            font-style: italic;
+            font-weight: normal;
+            src: url("{{ public_path('fonts/THSarabunNew Italic.ttf') }}") format('truetype');
+        }
+        @font-face {
+            font-family: 'THSarabunNew';
+            font-style: italic;
+            font-weight: bold;
+            src: url("{{ public_path('fonts/THSarabunNew BoldItalic.ttf') }}") format('truetype');
+        }
+        html{
+            margin: 0px;
+        }
+        body{
+         font-family: "THSarabunNew";
+         padding: 0.5in 0.4in 0.2in 0.4in;
+         font-size: 14pt;
+        }
+        table {
+            border-collapse: collapse;
+        }
+        table{
+            width: 100%;
+        }
+        th{
+            border: 0px solid black;
+            padding: 0.5em 0.5em;
+            font-size: 14pt;
+        }
+        td {
+            border: 1px solid black;
+            padding: 0px 2px;
+            font-size: 10pt;
+        }
+        label{
+            float: right;
+            margin-top: -45px;
+            font-size: 12pt;
+        }
+
+        </style>
+
 </head>
 
 <body>
