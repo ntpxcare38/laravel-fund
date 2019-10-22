@@ -32,7 +32,7 @@ class MemberController extends Controller
         $vils = Village::all();
         $mtypes = MemberType::all();
         $bens = Benefit::all();
-        $mems = Member::orderBy('mem_id', 'DESC')->paginate($per_page);
+        $mems = Member::orderBy('mem_no', 'DESC')->paginate($per_page);
 
         return view('member.member_manage', compact('mems','vils','mtypes','bens','fund'));
     }
@@ -65,11 +65,11 @@ class MemberController extends Controller
                             ->orWhere('mem_card_id','like','%'.$search.'%')
                             ->orWhere('mem_fname','like','%'.$search.'%')
                             ->orWhere('mem_lname','like','%'.$search.'%')
-                            ->orderBy('mem_id', 'DESC')
+                            ->orderBy('mem_no', 'DESC')
                             ->paginate($per_page);
         }
         else{
-            $mems = Member::orderBy('mem_id', 'DESC')->paginate($per_page);
+            $mems = Member::orderBy('mem_no', 'DESC')->paginate($per_page);
         }
         // else if($search =='' && $searchDate != ''){
         //     $mems = Member::where('mem_birthdate', '=', $searchDate)
