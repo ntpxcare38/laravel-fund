@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
             'fund_no' => '156',
             'fund_village' => 'ต้นเกว๋น',
             'fund_moo' => 4,
-            'fund_soi' => '1',
+            'fund_soi' => '-',
             'fund_road' => 'สันป่าสัก-ต้นเกว๋น',
             'fund_tumbol' => 'หนองควาย',
             'fund_district' => 'หางดง',
@@ -36,7 +36,7 @@ class DatabaseSeeder extends Seeder
             'fund_email' => 'eu-au@hotmail.com',
             'fund_web' => 'www.eu-au.co.th',
             'fund_name_h' => 'นายอินถา หลวงใจ',
-            'fund_name_c' => 'นางอารีย์พันธ์ จีรัง',
+            'fund_name_c' => 'นางสาวอารีย์พันธ์ จีรัง',
             'fund_habitant' => 10897,
             'p_id' => 29,
             'fund_edit_time' => '2562-01-01 00:00:00'
