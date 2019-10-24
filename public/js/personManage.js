@@ -39,7 +39,7 @@ setBillModal = (
 
     document.getElementById("p_username").textContent=(p_username);
 
-    document.getElementById("linkImage").href = "download/"+p_photo;
+    document.getElementById("linkImage").href = "viewphoto/"+p_photo;
 
 
 }

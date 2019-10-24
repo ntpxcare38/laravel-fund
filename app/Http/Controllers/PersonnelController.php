@@ -231,10 +231,10 @@ class PersonnelController extends Controller
 
     }
 
-    public function download($path, $filename){
+    public function viewphoto($path, $filename){
 
         $path = public_path(). '/storage/'. $path.'/'.$filename;
-        return response()->download($path);
+        return response()->file($path);
     }
 
 }

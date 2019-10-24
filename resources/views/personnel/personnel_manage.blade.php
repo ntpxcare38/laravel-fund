@@ -157,7 +157,7 @@
                                 </div>
                             </div>
                                     <div class="col s12 m112 right-align">
-                                        <a id="linkImage" class="btn-floating btn-small waves-effect waves-light #45baaa"><i class="material-icons left">file_download</i></a>
+                                        <a target="blank" id="linkImage" class="btn-floating btn-small waves-effect waves-light #45baaa"><i class="material-icons left">fullscreen</i></a>
                                     </div>
                             <li>ชื่อ : <label><span id="p_title"></span><span id="p_fname"> </span></label></li>
                             <li>นามสกุล : <label><span id="p_lname"></span></label></li>

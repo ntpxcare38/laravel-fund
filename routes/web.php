@@ -50,7 +50,7 @@
     Route::resource('/per','PersonnelController');
     Route::get('/search_per','PersonnelController@search');
     Route::get('/autocomplete/fetchPer','PersonnelController@fetchPer')->name('autocomplete.fetchPer');
-    Route::get('/download/{path}/{filename}','PersonnelController@download');
+    Route::get('/viewphoto/{path}/{filename}','PersonnelController@viewphoto');
 
     // ------------------ Position Fund Manage -------------------
     Route::resource('/posfund','PositionFundController');
